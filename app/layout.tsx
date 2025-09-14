@@ -61,6 +61,11 @@ export const metadata: Metadata = {
         description: "A modern portfolio showcasing product strategy, design leadership, and community impact.",
         keywords: ["product strategy", "design leadership", "UX design", "design systems", "portfolio"],
       authors: [{ name: "Jake Taylor" }],
+      icons: {
+        icon: '/favicon.svg',
+        shortcut: '/favicon.svg',
+        apple: '/favicon.svg',
+      },
       openGraph: {
       title: "Jake Taylor - Product Strategy & Design Leadership",
       description: "A modern portfolio showcasing product strategy, design leadership, and community impact.",

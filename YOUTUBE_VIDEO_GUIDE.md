@@ -138,5 +138,3 @@
 - Loading times are optimized for mobile networks
 
 ---
-
-**Need help?** Check the example blog post at `/blog/video-integration-example` for a complete demonstration. 
