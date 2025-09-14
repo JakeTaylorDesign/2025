@@ -1,0 +1,283 @@
+@import "tailwindcss";
+
+/* Performance optimizations */
+@layer base {
+  /* Enable GPU acceleration for common animated elements */
+  .hero-section,
+  .about-section,
+  [class*="gsap"],
+  [class*="framer-motion"] {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  /* Optimize scrolling performance */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Reduce paint and layout thrashing */
+  * {
+    box-sizing: border-box;
+  }
+
+  /* Optimize font rendering */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeSpeed;
+  }
+}
+
+:root {
+  --background: #000000;
+  --foreground: #ffffff;
+  --secondary: #171717;
+  --muted: #737373;
+  --accent: #fafafa;
+  --border: #262626;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-secondary: var(--secondary);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-border: var(--border);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-space-mono: var(--font-space-mono);
+  --font-crimson-text: var(--font-crimson-text);
+}
+
+/* Smooth scrolling for entire document */
+/* html {
+  scroll-behavior: smooth;
+} */
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+
+/* Selection styling */
+::selection {
+  background: var(--accent);
+  color: var(--background);
+}
+
+/* Focus styles for accessibility */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Crimson Text font utilities */
+.font-crimson-bold {
+  font-family: var(--font-crimson-text), Georgia, serif;
+  font-weight: 700;
+}
+
+/* Courier Prime font utilities */
+.font-courier-prime {
+  font-family: var(--font-courier-prime), "Courier New", monospace;
+  font-weight: 400;
+}
+
+/* Tilt Prism font utilities */
+.font-tilt-prism {
+  font-family: var(--font-tilt-prism), fantasy;
+}
+
+/* Museo Moderna font utilities */
+.font-museo-moderna {
+  font-family: var(--font-museo-moderna), serif;
+}
+
+/* Nothing You Could Do font utilities */
+.font-nothing-you-could-do {
+  font-family: 'Nothing You Could Do', cursive;
+}
+
+/* IBM Plex Mono font utilities */
+.font-ibm-plex-mono {
+  font-family: var(--font-ibm-plex-mono), monospace;
+}
+
+/* ReactBits Dark Veil Styles */
+.bg-radial-gradient {
+  background: radial-gradient(circle at center, transparent 0%, transparent 50%, rgba(0, 0, 0, 0.2) 100%);
+}
+
+/* Particle animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+    opacity: 0.1;
+  }
+  50% {
+    transform: translateY(-20px) scale(1.2);
+    opacity: 0.3;
+  }
+}
+
+.absolute > div {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Gritty texture for backgrounds */
+.gritty-texture {
+  background-image: 
+    radial-gradient(circle at 1px 1px, rgba(255,255,255,0.06) 1px, transparent 0),
+    radial-gradient(circle at 3px 3px, rgba(255,255,255,0.04) 1px, transparent 0),
+    radial-gradient(circle at 5px 5px, rgba(255,255,255,0.02) 1px, transparent 0);
+  background-size: 20px 20px, 40px 40px, 60px 60px;
+  background-position: 0 0, 10px 10px, 20px 20px;
+}
+
+/* Alternative: Noise texture */
+.noise-texture {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+/* Enhanced Blog Typography */
+.prose {
+  color: var(--muted);
+}
+
+.prose h1 {
+  color: var(--foreground);
+  font-size: 2.25rem;
+  font-weight: 300;
+  line-height: 1.2;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.prose h2 {
+  color: var(--foreground);
+  font-size: 1.875rem;
+  font-weight: 400;
+  line-height: 1.3;
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose h3 {
+  color: var(--foreground);
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.4;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose p {
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 1.25rem;
+}
+
+.prose strong {
+  color: var(--foreground);
+  font-weight: 600;
+}
+
+.prose a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.prose a:hover {
+  border-bottom-color: var(--accent);
+}
+
+.prose blockquote {
+  border-left: 4px solid var(--accent);
+  background: var(--secondary);
+  padding: 1.5rem;
+  margin: 2rem 0;
+  border-radius: 0 0.5rem 0.5rem 0;
+  font-style: italic;
+  color: var(--foreground);
+}
+
+.prose blockquote p {
+  margin: 0;
+  color: var(--foreground);
+}
+
+.prose ul, .prose ol {
+  color: var(--muted);
+  margin-bottom: 1.25rem;
+  padding-left: 1.5rem;
+}
+
+.prose li {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+.prose code {
+  background: var(--secondary);
+  color: var(--accent);
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  font-size: 0.875em;
+}
+
+.prose pre {
+  background: var(--secondary);
+  color: var(--foreground);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+.prose pre code {
+  background: none;
+  padding: 0;
+  color: inherit;
+}
+
+/* Line clamp utilities */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
