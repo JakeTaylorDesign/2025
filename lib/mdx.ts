@@ -57,79 +57,92 @@ const blogPosts: BlogPost[] = [
   },
   {
     slug: 'team-building-mexico',
-    title: 'Building High-Performing Teams in Mexico: A Design Leader\'s Perspective',
-    date: '2024-02-10',
-    excerpt: 'Insights and strategies for building successful design teams in Mexico\'s vibrant tech landscape, from cultural integration to collaborative innovation.',
+    title: 'Team Building - Mexico City',
+    date: '2024-11-12',
+    excerpt: 'Mexico City delivered everything we hoped for in a team retreat and so much more. Between diving deep into ancient civilizations at the [Museum of Anthropology](https://museu.ms/museum/details/16762/national-museum-of-anthropology), exploring the historic grandeur of [Chapultepec Castle](https://mnh.inah.gob.mx/), and savoring incredible meals together, we experienced the kind of cultural immersion that bonds a team in ways no conference room ever could. The warmth and vibrancy of the city and its people made every shared moment feel both adventurous and grounding.',
     featured: true,
     tags: ['team building', 'mexico', 'remote work', 'cultural leadership', 'design teams'],
-    content: `# Building High-Performing Teams in Mexico: A Design Leader's Perspective
-
-Mexico's tech landscape is a vibrant blend of tradition and innovation, where rich cultural heritage meets cutting-edge technology. As a design leader working with teams across Mexico, I've discovered that successful team building here requires a unique approach that honors cultural values while fostering creative excellence.
-
-<HeroImage 
+    content: `<HeroImage 
   src="/images/blog/mexico/hero_mexico.jpg" 
   alt="Team collaboration in Mexico" 
   caption="Modern design teams in Mexico blend traditional values with innovative approaches"
 />
 
-## The Cultural Foundation
 
-Mexico's rich cultural heritage provides a unique foundation for building design teams. The concept of "familismo" (family-centered values) translates beautifully into collaborative design environments.
 
-### Understanding Cultural Nuances
+<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+  <HeroImage 
+    src="/images/blog/mexico/IMG_0012.jpg" 
+    alt="Mexico Team Building 1" 
+    caption=""
+  />
+  <HeroImage 
+    src="/images/blog/mexico/IMG_0014.jpg" 
+    alt="Mexico Team Building 2" 
+    caption=""
+  />
+</div>
 
-> "In Mexico, relationships and trust are the foundation of successful collaboration. Building genuine connections is the first step to building great teams."
+<div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+  <HeroImage 
+    src="/images/blog/mexico/IMG_0185.jpg" 
+    alt="Mexico Team Building 3" 
+    caption=""
+  />
+  <HeroImage 
+    src="/images/blog/mexico/IMG_0186.jpg" 
+    alt="Mexico Team Building 4" 
+    caption=""
+  />
+</div>
 
-Mexican work culture emphasizes:
+<div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+  <HeroImage 
+    src="/images/blog/mexico/IMG_0188.jpg" 
+    alt="Mexico Team Building 5" 
+    caption=""
+  />
+  <HeroImage 
+    src="/images/blog/mexico/IMG_0190.jpg" 
+    alt="Mexico Team Building 6" 
+    caption=""
+  />
+</div>
 
-- **Personal Relationships**: Building strong interpersonal connections before focusing on tasks
-- **Collective Achievement**: Celebrating team success over individual recognition
-- **Respect for Hierarchy**: Balancing traditional respect with modern collaborative structures
+<div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+  <HeroImage 
+    src="/images/blog/mexico/IMG_0248.jpg" 
+    alt="Mexico Team Building 7" 
+    caption=""
+  />
+  <HeroImage 
+    src="/images/blog/mexico/IMG_0273.jpg" 
+    alt="Mexico Team Building 8" 
+    caption=""
+  />
+</div>
 
-## Remote Collaboration
+<div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+  <HeroImage 
+    src="/images/blog/mexico/IMG_0306.jpg" 
+    alt="Mexico Team Building 9" 
+    caption=""
+  />
+  <HeroImage 
+    src="/images/blog/mexico/IMG_0318.jpg" 
+    alt="Mexico Team Building 10" 
+    caption=""
+  />
+</div>
 
-Mexico's strategic position as a nearshore tech hub means design teams often collaborate across multiple time zones with North American partners. This presents both challenges and opportunities.
-
-<ImageLeft 
-  src="/images/blog/mexico/IMG_0185.jpg" 
-  alt="Team members engaged in a discussion" 
-  caption="Modern collaboration tools bridge geographical and cultural gaps"
-/>
-
-Effective remote team building in Mexico requires:
-
-- **Flexible Scheduling**: Accommodating family commitments and cultural celebrations
-- **Cultural Sensitivity**: Understanding Mexican holidays, traditions, and work-life balance
-- **Technology Integration**: Using tools that work reliably across different internet infrastructures
-
-## Design Leadership
-
-Leading design teams in Mexico requires adapting management principles to local cultural contexts.
-
-<ImageRight 
-  src="/images/blog/mexico/IMG_0273.jpg" 
-  alt="Local leadership in action" 
-  caption="Effective leadership adapts to cultural context while maintaining design excellence"
-/>
-
-Successful design leaders in Mexico:
-
-- **Lead with Empathy**: Understanding and respecting personal and family commitments
-- **Provide Clear Direction**: Mexican teams often prefer explicit guidance and clear expectations
-- **Build Trust Relationships**: Traditional "confianza" (trust) relationships translate well to design mentorship
-
-## Conclusion
-
-Building high-performing design teams in Mexico is both an art and a science. It requires understanding cultural nuances, adapting global best practices to local contexts, and creating environments where creativity can flourish within the framework of Mexican values.
-
-The most successful teams I've worked with in Mexico have been those that honor tradition while embracing innovation, that build strong relationships while delivering excellent work, and that celebrate both individual achievement and collective success.
-
-## Team Building in Action
-
-Here's a visual journey through the collaborative spirit and cultural richness that defines successful team building in Mexico's dynamic tech landscape.
-
-<ImageGrid />`,
-    image: '/api/placeholder/600/400',
+<div className="mt-6">
+  <HeroImage 
+    src="/images/blog/mexico/IMG_0320.jpg" 
+    alt="Mexico Team Building 11" 
+    caption=""
+  />
+</div>`,
+    image: '/images/blog/mexico/hero_mexico.jpg',
     color: 'from-green-500/20 to-emerald-500/20',
   },
   {
@@ -367,215 +380,6 @@ Building an empowered team culture doesn't happen overnight, but every leader ca
 *Leadership is ultimately about creating conditions where others can do their best work. What practices have you found most effective for empowering your teams?*`,
     image: '/api/placeholder/600/400',
     color: 'from-green-500/20 to-emerald-500/20',
-  },
-  {
-    slug: 'design-culture-transformation',
-    title: 'Transforming Organizational Culture Through Design Leadership',
-    date: '2024-01-29',
-    excerpt: 'How design leaders can drive cultural change, build design maturity, and create organizations that truly value user-centered thinking.',
-    featured: false,
-    tags: ['culture change', 'design maturity', 'organizational transformation', 'leadership'],
-    content: `# Transforming Organizational Culture Through Design Leadership
-
-Design leadership isn't just about managing design teams—it's about transforming how entire organizations think about and value design. The most impactful design leaders I've worked with understand that their role extends far beyond the design department.
-
-## The Cultural Challenge
-
-Many organizations view design as a service function, something that happens after the "real" work is done. This mindset creates fundamental problems:
-
-- Design decisions made without design input
-- User needs considered as an afterthought
-- Innovation stifled by process and hierarchy
-- Design teams isolated from strategic conversations
-
-The challenge for design leaders is to shift this mindset from "design as decoration" to "design as strategy."
-
-## Building Design Maturity
-
-I've found that organizations progress through predictable stages of design maturity. Understanding where your organization sits helps tailor your approach:
-
-### Stage 1: Design as Service
-- Designers work on individual projects
-- No design strategy or systematic approach
-- Design decisions made by non-designers
-- Focus on aesthetics over user experience
-
-### Stage 2: Design as Process
-- Design processes and methodologies adopted
-- User research and testing implemented
-- Design teams growing in size and influence
-- Still reactive rather than strategic
-
-### Stage 3: Design as Strategy
-- Design integrated into business strategy
-- Design leaders at executive level
-- User-centered decision making
-- Design thinking across organization
-
-### Stage 4: Design as Culture
-- Design embedded in organizational DNA
-- Innovation driven by user insights
-- Design excellence as competitive advantage
-- Continuous learning and improvement
-
-## Strategies for Cultural Transformation
-
-### 1. Start with Education
-Design literacy is the foundation of cultural change. I've found success with:
-
-**Executive Education**
-- Design thinking workshops for leadership
-- Case studies showing design's business impact
-- Regular design reviews with executives
-- Design metrics in business reporting
-
-**Cross-Functional Training**
-- Design principles for product managers
-- User research methods for engineers
-- Design critique skills for stakeholders
-- Design system training for all teams
-
-### 2. Create Design Champions
-Cultural change requires advocates throughout the organization:
-
-**Identifying Champions**
-- People who naturally think user-first
-- Leaders who understand design's value
-- Team members who can translate design to business
-- Stakeholders who can influence others
-
-**Supporting Champions**
-- Providing resources and training
-- Creating opportunities to showcase design impact
-- Recognizing and rewarding design advocacy
-- Building networks of design supporters
-
-### 3. Embed Design in Processes
-Design becomes cultural when it's part of how work gets done:
-
-**Strategic Planning**
-- Design input in business strategy development
-- User research informing product roadmaps
-- Design metrics in OKRs and KPIs
-- Design reviews in major decision processes
-
-**Product Development**
-- Design sprints and workshops
-- User testing integrated into development cycles
-- Design system governance and maintenance
-- Continuous user feedback loops
-
-### 4. Measure and Communicate Impact
-Cultural change requires evidence of success:
-
-**Design Metrics**
-- User satisfaction and engagement
-- Design system adoption rates
-- Time-to-market improvements
-- Design debt reduction
-
-**Business Impact**
-- Revenue impact of design improvements
-- Customer retention and acquisition
-- Operational efficiency gains
-- Competitive differentiation
-
-## Overcoming Resistance
-
-Cultural transformation inevitably faces resistance. Here are strategies I've found effective:
-
-### Addressing Common Concerns
-**"Design takes too long"**
-- Show how good design reduces rework
-- Demonstrate faster time-to-market with design systems
-- Share examples of design preventing costly mistakes
-
-**"Design is subjective"**
-- Establish clear design principles and criteria
-- Use data and research to support decisions
-- Create design review processes with clear guidelines
-
-**"We can't afford design"**
-- Calculate ROI of design investments
-- Show cost savings from reduced rework
-- Demonstrate competitive advantage of good design
-
-### Building Alliances
-Cultural change requires allies across the organization:
-
-**Engineering Partnerships**
-- Collaborative design and development processes
-- Shared ownership of user experience
-- Technical feasibility in design decisions
-- Design system implementation support
-
-**Product Management Alignment**
-- User research informing product strategy
-- Design metrics in product success criteria
-- Design input in feature prioritization
-- Shared responsibility for user outcomes
-
-**Executive Sponsorship**
-- Design leaders at executive table
-- Regular design impact reporting
-- Design investment in budget planning
-- Design excellence as organizational priority
-
-## Sustaining Cultural Change
-
-Cultural transformation isn't a one-time event—it requires ongoing effort:
-
-### Continuous Learning
-- Regular design workshops and training
-- Industry best practices and trends
-- Design team skill development
-- Cross-functional design education
-
-### Recognition and Rewards
-- Celebrating design successes
-- Recognizing design champions
-- Including design in performance metrics
-- Design awards and recognition programs
-
-### Feedback and Iteration
-- Regular assessment of design maturity
-- Feedback from stakeholders and users
-- Continuous improvement of design processes
-- Adaptation to organizational changes
-
-## The Long-Term Vision
-
-The goal of cultural transformation is to create organizations where:
-
-**Design is Strategic**
-- Design leaders participate in strategic planning
-- User insights drive business decisions
-- Design excellence is a competitive advantage
-- Innovation is user-centered
-
-**Design is Collaborative**
-- Cross-functional teams work together
-- Design thinking is everyone's responsibility
-- User needs are considered in all decisions
-- Design processes are transparent and inclusive
-
-**Design is Measurable**
-- Design impact is tracked and reported
-- Design investments show clear ROI
-- Design quality is consistently high
-- Design maturity continues to grow
-
-## Moving Forward
-
-Transforming organizational culture through design leadership is a long-term commitment that requires patience, persistence, and strategic thinking. The organizations that succeed are those that understand that design isn't just about making things look good—it's about creating value for users and businesses through thoughtful, strategic design decisions.
-
-The key is to start small, build momentum, and never stop advocating for the value of design in creating better products, services, and experiences.
-
----
-
-*What strategies have you found most effective for driving cultural change around design in your organization? I'd love to hear about your experiences and lessons learned.*`,
-    image: '/api/placeholder/600/400',
-    color: 'from-purple-500/20 to-pink-500/20',
   },
 ];
 

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Space_Mono, Crimson_Text, Courier_Prime, Tilt_Prism, MuseoModerno, Nothing_You_Could_Do, IBM_Plex_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Space_Mono, Crimson_Text, Courier_Prime, Tilt_Prism, MuseoModerno, Nothing_You_Could_Do, IBM_Plex_Mono, Besley } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Script from "next/script";
@@ -56,6 +56,12 @@ const ibmPlexMono = IBM_Plex_Mono({
   variable: "--font-ibm-plex-mono",
 });
 
+const besley = Besley({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+  variable: "--font-besley",
+});
+
 export const metadata: Metadata = {
           title: "Jake Taylor - Product Strategy & Design Leadership",
         description: "A modern portfolio showcasing product strategy, design leadership, and community impact.",
@@ -84,7 +90,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${geist.variable} ${geistMono.variable} ${spaceMono.variable} ${crimsonText.variable} ${courierPrime.variable} ${tiltPrism.variable} ${museoModerna.variable} ${nothingYouCouldDo.variable} ${ibmPlexMono.variable}`}>
+    <html lang="en" className={`${geist.variable} ${geistMono.variable} ${spaceMono.variable} ${crimsonText.variable} ${courierPrime.variable} ${tiltPrism.variable} ${museoModerna.variable} ${nothingYouCouldDo.variable} ${ibmPlexMono.variable} ${besley.variable}`}>
       <head>
         <link href="https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&display=swap" rel="stylesheet" />
         <Script 

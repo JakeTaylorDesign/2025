@@ -4,23 +4,18 @@ import { useEffect, useState } from "react";
 import dynamic from 'next/dynamic';
 import { motion } from "framer-motion";
 
-// Lazy load heavy WebGL component
+// Lazy load heavy WebGL component with minimal loading state
 const FaultyTerminal = dynamic(() => import("@/components/FaultyTerminal"), {
   ssr: false,
-  loading: () => (
-    <div className="absolute inset-0 bg-background/50 flex items-center justify-center">
-      <div className="text-center">
-        <div className="w-8 h-8 border-2 border-accent border-t-transparent rounded-full animate-spin mb-2"></div>
-        <p className="text-sm text-muted">Loading...</p>
-      </div>
-    </div>
-  )
+  loading: () => <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-black" />
 });
 import AnimatedSection from "@/components/AnimatedSection";
 import BlogCard from "@/components/BlogCard";
 import AboutApproach from "@/components/AboutApproachOptimized";
 import PerformanceMonitor from "@/components/PerformanceMonitor";
 import SpotlightCard from "@/components/SpotlightCard";
+import GradualBlur from "@/components/GradualBlur";
+import CardSwap, { Card } from "@/components/CardSwap";
 import { getAllProjects } from "@/lib/projects";
 import { getAllPosts } from "@/lib/mdx";
 import Link from "next/link";
@@ -55,7 +50,7 @@ export default function HomePage() {
   return (
     <main className="relative">
       {/* Hero Section with Faulty Terminal Background */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background pt-32">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 to-black pt-32">
         <div style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0 }}>
           <FaultyTerminal
             scale={2.0}
@@ -80,6 +75,18 @@ export default function HomePage() {
             style={{}}
           />
         </div>
+        
+        {/* Gradual Blur Effect - Fixed to bottom of viewport */}
+        <GradualBlur
+          target="page"
+          position="bottom"
+          height="8rem"
+          strength={4}
+          divCount={6}
+          curve="bezier"
+          exponential={true}
+          opacity={0.8}
+        />
         <motion.div 
           className="text-center max-w-4xl mx-auto px-6 relative z-10"
           initial={{ opacity: 0 }}
@@ -88,11 +95,12 @@ export default function HomePage() {
         >
           <motion.h1 
             className="text-5xl md:text-7xl font-light text-foreground mb-8"
+            style={{ fontFamily: 'var(--font-ibm-plex-mono), monospace' }}
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
           >
-            <span className="font-ibm-plex-mono">Jake Taylor</span>
+            Jake Taylor
           </motion.h1>
           <motion.p 
             className="text-xl md:text-2xl text-gray-200 mb-12 max-w-3xl mx-auto font-courier-prime"
@@ -130,8 +138,7 @@ export default function HomePage() {
       <AboutApproach />
 
       {/* Featured Projects Section - Performance Optimized */}
-      <section className="py-24 px-6 bg-secondary/30">
-        
+      <section className="py-24 px-6 bg-secondary/30 relative">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-light text-foreground mb-6 font-tilt-prism">
@@ -188,7 +195,7 @@ export default function HomePage() {
                         
                         <div className="mt-6 pt-6 border-t border-border">
                           <span className="text-sm text-muted group-hover:text-accent transition-colors">
-                            View Case Study →
+                            View Post →
                           </span>
                         </div>
                       </div>
@@ -211,7 +218,7 @@ export default function HomePage() {
       <section className="py-24 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-light text-foreground mb-6 font-nothing-you-could-do">
+            <h2 className="text-4xl md:text-5xl font-light text-foreground mb-6 font-besley">
               Thoughts
             </h2>
             <p className="text-xl text-muted max-w-3xl mx-auto">
@@ -248,6 +255,108 @@ export default function HomePage() {
               </p>
             </div>
           )}
+        </div>
+      </section>
+
+      {/* Giving Back Section */}
+      <section className="py-24 px-6 bg-background relative">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Left side - Text content */}
+            <div className="space-y-6">
+              <h2 className="text-4xl md:text-5xl font-light text-foreground mb-8 font-nothing-you-could-do">
+                Giving Back
+              </h2>
+              <p className="text-lg text-muted leading-relaxed max-w-2xl">
+                I believe in the power of community and the importance of giving back. Through mentorship, 
+                open-source contributions, and speaking engagements, I strive to share knowledge and 
+                support the next generation of designers and developers. Whether it's volunteering 
+                time to help startups with their product strategy or sharing insights through 
+                workshops and talks, I'm committed to fostering growth and innovation in our industry.
+              </p>
+              <p className="text-lg text-muted leading-relaxed max-w-2xl">
+                My approach to giving back is rooted in the belief that everyone has something valuable 
+                to contribute, and that by lifting others up, we all benefit. From mentoring junior 
+                designers to contributing to design systems that help teams work more efficiently, 
+                I see every opportunity to give back as a chance to make our community stronger.
+              </p>
+            </div>
+
+            {/* Right side - Card Swap effect */}
+            <div className="relative h-[600px]">
+              <CardSwap
+                cardDistance={60}
+                verticalDistance={105}
+                delay={5000}
+                skewAmount={11}
+                pauseOnHover={false}
+              >
+                <Card className="bg-gradient-to-br from-blue-900 to-purple-900 p-8 text-white relative overflow-hidden">
+                  <div className="absolute inset-0 opacity-40">
+                    <img 
+                      src="/images/giving-back/avo_card.jpg" 
+                      alt="Avo Academy" 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="relative z-10">
+                    <h3 className="text-2xl font-bold mb-4">Avo Academy</h3>
+                    <p className="text-blue-100 leading-relaxed">
+                      Mentoring junior designers and product managers through their career journey, 
+                      sharing insights from 20+ years of experience in the field.
+                    </p>
+                  </div>
+                </Card>
+                <Card className="bg-gradient-to-br from-green-900 to-teal-900 p-8 text-white relative overflow-hidden">
+                  <div className="absolute inset-0 opacity-40">
+                    <img 
+                      src="/images/giving-back/flatiron_card.jpg" 
+                      alt="Flatiron School" 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="relative z-10">
+                    <h3 className="text-2xl font-bold mb-4">Flatiron School</h3>
+                    <p className="text-green-100 leading-relaxed">
+                      Contributing to design systems and tools that help teams build better 
+                      products faster, making design more accessible to everyone.
+                    </p>
+                  </div>
+                </Card>
+                <Card className="bg-gradient-to-br from-orange-900 to-red-900 p-8 text-white relative overflow-hidden">
+                  <div className="absolute inset-0 opacity-40">
+                    <img 
+                      src="/images/giving-back/kcc_card.jpg" 
+                      alt="KCC Designworks" 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="relative z-10">
+                    <h3 className="text-2xl font-bold mb-4">KCC Designworks</h3>
+                    <p className="text-orange-100 leading-relaxed">
+                      Sharing knowledge through conferences, workshops, and meetups, 
+                      helping others learn from both successes and failures.
+                    </p>
+                  </div>
+                </Card>
+                <Card className="bg-gradient-to-br from-purple-900 to-pink-900 p-8 text-white relative overflow-hidden">
+                  <div className="absolute inset-0 opacity-40">
+                    <img 
+                      src="/images/giving-back/uncommon_card.jpg" 
+                      alt="Uncommon Community" 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="relative z-10">
+                    <h3 className="text-2xl font-bold mb-4">Uncommon</h3>
+                    <p className="text-purple-100 leading-relaxed">
+                      UX Curriculum Advisor & Design Mentor
+                    </p>
+                  </div>
+                </Card>
+              </CardSwap>
+            </div>
+          </div>
         </div>
       </section>
 

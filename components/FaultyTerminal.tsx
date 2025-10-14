@@ -1,7 +1,7 @@
 "use client";
 
 import { Renderer, Program, Mesh, Color, Triangle } from "ogl";
-import { useEffect, useRef, useMemo, useCallback } from "react";
+import { useEffect, useRef, useMemo, useCallback, useState } from "react";
 
 const vertexShader = `
 attribute vec2 position;
@@ -271,7 +271,9 @@ export default function FaultyTerminal({
   style,
   ...rest
 }: FaultyTerminalProps) {
-  // Move all hooks to top level - before any conditional returns
+  // ALL HOOKS MUST BE AT THE TOP - BEFORE ANY CONDITIONAL LOGIC
+  const [hasError, setHasError] = useState(false);
+  
   const containerRef = useRef<HTMLDivElement>(null);
   const programRef = useRef<any>(null);
   const rendererRef = useRef<any>(null);
@@ -284,11 +286,6 @@ export default function FaultyTerminal({
 
   // Calculate dpr on client side
   const devicePixelRatio = dpr || (typeof window !== 'undefined' ? Math.min(window.devicePixelRatio || 1, 2) : 1);
-
-  // Don't render on server side
-  if (typeof window === 'undefined') {
-    return <div className={`w-full h-full relative overflow-hidden ${className}`} style={style} {...rest} />;
-  }
 
   const tintVec = useMemo(() => hexToRgb(tint), [tint]);
 
@@ -310,53 +307,61 @@ export default function FaultyTerminal({
     const ctn = containerRef.current;
     if (!ctn) return;
 
-    const renderer = new Renderer({ dpr: devicePixelRatio });
-    rendererRef.current = renderer;
-    const gl = renderer.gl;
-    gl.clearColor(0, 0, 0, 1);
+    try {
+      const renderer = new Renderer({ dpr: devicePixelRatio });
+      rendererRef.current = renderer;
+      const gl = renderer.gl;
+      
+      if (!gl) {
+        console.warn('WebGL not supported, falling back to static background');
+        setHasError(true);
+        return;
+      }
+      
+      gl.clearColor(0, 0, 0, 1);
 
-    const geometry = new Triangle(gl);
+      const geometry = new Triangle(gl);
 
-    const program = new Program(gl, {
-      vertex: vertexShader,
-      fragment: fragmentShader,
-      uniforms: {
-        iTime: { value: 0 },
-        iResolution: {
-          value: new Color(
-            gl.canvas.width,
-            gl.canvas.height,
-            gl.canvas.width / gl.canvas.height
-          ),
+      const program = new Program(gl, {
+        vertex: vertexShader,
+        fragment: fragmentShader,
+        uniforms: {
+          iTime: { value: 0 },
+          iResolution: {
+            value: new Color(
+              gl.canvas.width,
+              gl.canvas.height,
+              gl.canvas.width / gl.canvas.height
+            ),
+          },
+          uScale: { value: scale },
+
+          uGridMul: { value: new Float32Array(gridMul) },
+          uDigitSize: { value: digitSize },
+          uScanlineIntensity: { value: scanlineIntensity },
+          uGlitchAmount: { value: glitchAmount },
+          uFlickerAmount: { value: flickerAmount },
+          uNoiseAmp: { value: noiseAmp },
+          uChromaticAberration: { value: chromaticAberration },
+          uDither: { value: ditherValue },
+          uCurvature: { value: curvature },
+          uTint: { value: new Color(tintVec[0], tintVec[1], tintVec[2]) },
+          uMouse: {
+            value: new Float32Array([
+              smoothMouseRef.current.x,
+              smoothMouseRef.current.y,
+            ]),
+          },
+          uMouseStrength: { value: mouseStrength },
+          uUseMouse: { value: mouseReact ? 1 : 0 },
+          uPageLoadProgress: { value: pageLoadAnimation ? 0 : 1 },
+          uUsePageLoadAnimation: { value: pageLoadAnimation ? 1 : 0 },
+          uBrightness: { value: brightness },
         },
-        uScale: { value: scale },
+      });
+      programRef.current = program;
 
-        uGridMul: { value: new Float32Array(gridMul) },
-        uDigitSize: { value: digitSize },
-        uScanlineIntensity: { value: scanlineIntensity },
-        uGlitchAmount: { value: glitchAmount },
-        uFlickerAmount: { value: flickerAmount },
-        uNoiseAmp: { value: noiseAmp },
-        uChromaticAberration: { value: chromaticAberration },
-        uDither: { value: ditherValue },
-        uCurvature: { value: curvature },
-        uTint: { value: new Color(tintVec[0], tintVec[1], tintVec[2]) },
-        uMouse: {
-          value: new Float32Array([
-            smoothMouseRef.current.x,
-            smoothMouseRef.current.y,
-          ]),
-        },
-        uMouseStrength: { value: mouseStrength },
-        uUseMouse: { value: mouseReact ? 1 : 0 },
-        uPageLoadProgress: { value: pageLoadAnimation ? 0 : 1 },
-        uUsePageLoadAnimation: { value: pageLoadAnimation ? 1 : 0 },
-        uBrightness: { value: brightness },
-      },
-    });
-    programRef.current = program;
-
-    const mesh = new Mesh(gl, { geometry, program });
+      const mesh = new Mesh(gl, { geometry, program });
 
     function resize() {
       if (!ctn || !renderer) return;
@@ -413,15 +418,19 @@ export default function FaultyTerminal({
 
     if (mouseReact) ctn.addEventListener("mousemove", handleMouseMove);
 
-    return () => {
-      cancelAnimationFrame(rafRef.current);
-      resizeObserver.disconnect();
-      if (mouseReact) ctn.removeEventListener("mousemove", handleMouseMove);
-      if (gl.canvas.parentElement === ctn) ctn.removeChild(gl.canvas);
-      gl.getExtension("WEBGL_lose_context")?.loseContext();
-      loadAnimationStartRef.current = 0;
-      timeOffsetRef.current = Math.random() * 100;
-    };
+      return () => {
+        cancelAnimationFrame(rafRef.current);
+        resizeObserver.disconnect();
+        if (mouseReact) ctn.removeEventListener("mousemove", handleMouseMove);
+        if (gl.canvas.parentElement === ctn) ctn.removeChild(gl.canvas);
+        gl.getExtension("WEBGL_lose_context")?.loseContext();
+        loadAnimationStartRef.current = 0;
+        timeOffsetRef.current = Math.random() * 100;
+      };
+    } catch (error) {
+      console.error('FaultyTerminal WebGL initialization failed:', error);
+      setHasError(true);
+    }
   }, [
     dpr,
     pause,
@@ -443,6 +452,11 @@ export default function FaultyTerminal({
     brightness,
     handleMouseMove,
   ]);
+
+  // CONDITIONAL RETURNS AFTER ALL HOOKS - Show fallback only on error
+  if (hasError) {
+    return <div className={`w-full h-full relative overflow-hidden ${className}`} style={style} {...rest} />;
+  }
 
   return (
     <div

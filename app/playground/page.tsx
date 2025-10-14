@@ -109,7 +109,7 @@ export default function PlaygroundPage() {
                             
                             <div className="pt-6 border-t border-border">
                               <span className="text-sm text-muted group-hover:text-accent transition-colors">
-                                View Case Study →
+                                View Post →
                               </span>
                             </div>
                           </div>

@@ -95,7 +95,7 @@ export default function Navigation() {
                   <AnimatePresence>
                     {showName && (
                       <motion.div
-                        className="text-xl font-medium text-foreground hover:text-accent transition-colors absolute whitespace-nowrap"
+                        className="text-xl font-ibm-plex-mono text-foreground hover:text-accent transition-colors absolute whitespace-nowrap"
                         initial={{ 
                           opacity: 0, 
                           y: 30 // Start from further below for more dramatic effect
@@ -135,7 +135,7 @@ export default function Navigation() {
                   const isActive = pathname === item.href;
                   return (
                     <Link key={item.href} href={item.href}>
-                      <div className="relative px-4 py-2 text-sm font-medium transition-colors whitespace-nowrap min-w-fit">
+                      <div className="relative px-4 py-2 text-sm font-ibm-plex-mono transition-colors whitespace-nowrap min-w-fit">
                         <span
                           className={isActive ? "text-accent" : "text-muted hover:text-foreground"}
                         >
@@ -227,7 +227,7 @@ export default function Navigation() {
                 return (
                   <Link key={item.href} href={item.href}>
                     <motion.div
-                      className="text-2xl font-medium transition-colors"
+                      className="text-2xl font-ibm-plex-mono transition-colors"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >

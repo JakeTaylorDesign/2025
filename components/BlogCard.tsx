@@ -94,7 +94,7 @@ export default function BlogCard({ post, index }: BlogCardProps) {
               
               <div className="pt-6 border-t border-border">
                 <span className="text-sm text-muted group-hover:text-accent transition-colors">
-                  View Case Study →
+                  View Post →
                 </span>
               </div>
             </div>

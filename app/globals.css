@@ -50,6 +50,12 @@
   --font-mono: var(--font-geist-mono);
   --font-space-mono: var(--font-space-mono);
   --font-crimson-text: var(--font-crimson-text);
+  --font-ibm-plex-mono: var(--font-ibm-plex-mono);
+  --font-courier-prime: var(--font-courier-prime);
+  --font-tilt-prism: var(--font-tilt-prism);
+  --font-museo-moderna: var(--font-museo-moderna);
+  --font-nothing-you-could-do: var(--font-nothing-you-could-do);
+  --font-besley: var(--font-besley);
 }
 
 /* Smooth scrolling for entire document */
@@ -126,6 +132,11 @@ body {
 /* IBM Plex Mono font utilities */
 .font-ibm-plex-mono {
   font-family: var(--font-ibm-plex-mono), monospace;
+}
+
+/* Besley font utilities */
+.font-besley {
+  font-family: var(--font-besley), serif;
 }
 
 /* ReactBits Dark Veil Styles */
